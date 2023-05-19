@@ -1,0 +1,34 @@
+{
+  "name": "typescript_website_template",
+  "version": "1.0.0",
+  "description": "Template for creating a Typescript website with external modules",
+  "main": "./js/main.js",
+  "scripts": {
+    "test": "tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/STASYA00/Typescript_Website_Template.git"
+  },
+  "keywords": [
+    "template",
+    "frontend",
+    "website",
+    "typescript",
+    "node"
+  ],
+  "author": "Stasya00",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/STASYA00/Typescript_Website_Template/issues"
+  },
+  "homepage": "https://github.com/STASYA00/Typescript_Website_Template#readme",
+  "dependencies": {
+    "fs": "^0.0.1-security",
+    "node-html-parser": "^6.1.5",
+    "uuid": "^9.0.0"
+  },
+  "devDependencies": {
+    "@types/uuid": "^9.0.1"
+  }
+}

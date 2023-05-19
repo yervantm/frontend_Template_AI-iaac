@@ -1,0 +1,64 @@
+<html> 
+<head>
+    <meta charset="utf-8" />
+    <title> Title </title>
+    <!-- <meta name="google-site-verification" content="xxxxxxxxxxxxx-xxxxxxxxxxxxxxxxx-xxxxxxxxxxx" /> -->
+    <script src="../js/system.min.js"></script> 
+    <script src="../js/named-register.js"></script> 
+    
+    <!-- <script type="systemjs-module" src="../js/main.js"></script> -->
+    <link rel="stylesheet" href="../css/styles.css" />
+  
+</head>
+
+<body>
+    <div id="root">
+        <form method="post" enctype="multipart/form-data">
+            <div>
+              <label for="file">Choose file to upload</label>
+              <input type="file" id="file" name="file" multiple onchange="
+                const img = document.createElement('img');
+                img.id = 'preview';
+                img.src = window.URL.createObjectURL(document.querySelector('input').files[0]);
+                img.width = 500;
+                document.querySelector('#root').appendChild(img)
+              "/>
+            </div>
+          </form>
+
+          <div>
+            <button onclick="
+                const img = document.querySelector('#preview');
+                try {
+                    fetch('https:/\/us-central1-website-382116.cloudfunctions.net/predict', {
+                    method: 'POST',
+                    files: document.querySelector('input').files[0],
+                    headers: {
+                        'Content-Type': 'multipart/form-data',
+                        'Access-Control-Allow-Origin': '*',
+                        'Access-Control-Allow-Methods': '*',
+                        'Access-Control-Allow-Headers': '*'
+                    },
+                    mode: 'cors',
+                        }).then(result => {
+                            if (result.status == 200) {
+                                result.json().then(result=>{console.log(result); return result;})
+                
+                            }
+                            else {
+                                console.log(result);
+                                console.log(`CODE: ${result.status}`);
+                            }
+                            return;
+                        });
+                    }
+                catch (e) {
+                    console.log(e);
+                    return new Promise((res) => res({ content: ['A', 'B'] }));
+                }
+                
+                       ">Submit</button>
+          </div>
+    </div>
+</body>
+</html> 
